@@ -21,7 +21,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register", {
+      const response = await axios.post("https://multi-agent-ai-customer-support-assistant-v0fy.onrender.com/api/register", {
         full_name: fullName,
         email: email,
         password: password,
