@@ -1,0 +1,21 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+
+# Node dependencies
+frontend/node_modules/
+npm-debug.log
+
+# Next.js build output
+.next/
+out/
+build/
+.npm/
+
+# Python Caches
+__pycache__/
+*.pyc
