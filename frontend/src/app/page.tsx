@@ -65,7 +65,7 @@ export default function Home() {
     if (!token) return;
 
     try {
-      const response = await axios.get("https://multi-agent-ai-customer-support-assistant-v0fy.onrender.com/history", {
+      const response = await axios.get("http://127.0.0.1:8000/history", {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -101,7 +101,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "https://multi-agent-ai-customer-support-assistant-v0fy.onrender.com/chat", 
+        "http://127.0.0.1:8000/chat", 
         { query: text, session_id: sessionId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

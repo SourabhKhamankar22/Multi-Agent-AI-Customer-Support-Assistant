@@ -18,7 +18,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("https://multi-agent-ai-customer-support-assistant-v0fy.onrender.com/api/login", {
+      const response = await axios.post("http://127.0.0.1:8000/api/login", {
         email,
         password,
       });

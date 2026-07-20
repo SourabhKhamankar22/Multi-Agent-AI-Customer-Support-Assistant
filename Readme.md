@@ -1,12 +1,7 @@
 # Multi-Agent AI Customer Support Assistant using RAG and LLMs
 
-An industry-level, production-ready capstone project demonstrating modern AI orchestration, semantic search, and secure multi-tier full-stack development. This system shifts away from monolithic chatbots by employing an intelligent routing mesh that delegating tasks to domains-specific AI agents equipped with Retrieval-Augmented Generation (RAG).
+An industry-level, production-ready capstone project demonstrating modern AI orchestration, semantic search, and secure multi-tier full-stack development. This system shifts away from monolithic chatbots by employing an intelligent routing mesh that delegating tasks to domain-specific AI agents equipped with Retrieval-Augmented Generation (RAG).
 
-## 🚀 Live Deployment Links
-
-* **Frontend Dashboard (Vercel):** [https://multi-agent-ai-customer-support-ass-iota.vercel.app]
-* **Backend API Gateway (Render):** [https://multi-agent-ai-customer-support-assistant-v0fy.onrender.com]
-* **Database Cloud Cluster:** MongoDB Atlas Distributed Cluster
 
 ---
 
@@ -202,6 +197,50 @@ Open [http://localhost:3000](http://localhost:3000) to access the application.
 
 ---
 
+## 💻 Local Deployment Execution & Video Demonstration Setup
+
+Due to production file size limits and memory constraints on standard cloud instances hosting transformer neural pipelines, this capstone application is configured to run in an optimized high-performance Local Environment for evaluation and the mandatory system video demonstration.
+
+### 1. Ingesting Corporate Metrics (RAG Engine Setup)
+
+Before initializing the orchestration backend, the document corpora must be processed into vectorized token frames. Run this from the root project folder:
+
+```bash
+python -m backend.rag.ingest
+```
+
+### 2. Launching the Asynchronous API Gateway Server
+
+Boot up your high-performance FastAPI backend cluster framework:
+
+```bash
+uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Verify the server layer status by navigating to:
+
+```text
+http://127.0.0.1:8000/
+```
+
+### 3. Deploying the Front-End User Portal Frame
+
+Navigate inside your interface subdirectory layer and boot the environment:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open your browser framework environment directly at:
+
+```text
+http://localhost:3000
+```
+
+---
+
 ## 📊 Application Dashboard Outputs & Deployment Evidence
 
 ### User Authentication Architecture
@@ -215,18 +254,9 @@ Open [http://localhost:3000](http://localhost:3000) to access the application.
 ### High-Fidelity Multi-Agent Chat Environment
 
 *The real-time operational dashboard executing automatic intent analysis routing across Billing, Technical, Product, Complaints, and FAQ agents.*
-![Chat Environment Dashboard](assets/chat.png)  ![Chat Environment Dashboard](assets/chat.png) 
+![Chat Environment Dashboard](assets/chat.png)  ![Chat Environment Dashboard](assets/chat2.png)  ![Chat Environment Dashboard](assets/chat3.png) 
 
 
-### Cloud Deployment Topologies
-
-*Verification of fully integrated live deployment configurations operating across Render API pipelines and Vercel edge delivery networks.*
-
-| Vercel Frontend Server Deploy Pipeline | Render Application Engine logs Cluster |
-| --- | --- |
-| ![Vercel Deployment](assets/vercel.png) | ![Render Deployment](assets/render.png) |
-
----
 
 ## 🎓 Evaluation & Implementation Matrix Met
 
