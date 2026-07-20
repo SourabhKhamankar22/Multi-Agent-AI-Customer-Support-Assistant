@@ -1,21 +1,20 @@
 import os
-from google import genai
 from dotenv import load_dotenv
 from pathlib import Path
-
-# 1. IMPORT THE RAG RETRIEVER
-from backend.rag.retriever import get_relevant_context
+from backend.utils.ai_client import get_genai_client
 
 base_dir = Path(__file__).resolve().parent.parent
 env_path = base_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
 def handle_faq_query(user_query: str) -> str:
     """Generates a RAG-augmented response for general questions."""
+    # LAZY IMPORT: Keeps sentence-transformers out of memory during system startup
+    from backend.rag.retriever import get_relevant_context
     
-    # 2. SEARCH THE VECTOR DATABASE
+    client = get_genai_client()
+    
+    # SEARCH THE VECTOR DATABASE
     company_context = get_relevant_context(user_query)
     
     prompt = f"""

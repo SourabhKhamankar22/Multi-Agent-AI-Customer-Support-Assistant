@@ -1,16 +1,16 @@
 import os
-from google import genai
 from dotenv import load_dotenv
 from pathlib import Path
+from backend.utils.ai_client import get_genai_client
 
 base_dir = Path(__file__).resolve().parent.parent
 env_path = base_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
 def handle_billing_query(user_query: str) -> str:
     """Generates a response for billing and payment issues."""
+    client = get_genai_client()
+    
     prompt = f"""
     You are the Billing Support Agent for a software company. 
     A customer has reached out with the following billing issue:

@@ -2,10 +2,10 @@ import os
 import json
 import time
 from pydantic import BaseModel
-from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 from pathlib import Path
+from backend.utils.ai_client import get_genai_client
 
 # Import all Specialized Agents
 from backend.agents.technical import handle_technical_query
@@ -14,14 +14,12 @@ from backend.agents.faq import handle_faq_query
 from backend.agents.complaint import handle_complaint_query
 from backend.agents.product import handle_product_query
 
-# 1. Load the environment variables
+# Load the environment variables
 base_dir = Path(__file__).resolve().parent.parent
 env_path = base_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
-# 2. Define the EXACT structure we want using Pydantic
+# Define the EXACT structure we want using Pydantic
 class RouteResponse(BaseModel):
     agent: str
 
@@ -30,6 +28,8 @@ def detect_intent(user_query: str, retries=3) -> str:
     Analyzes the user's message and routes it to the correct specialized agent.
     Includes automatic retries for 503 server errors.
     """
+    client = get_genai_client()
+    
     prompt = f"""
     You are the intelligent routing manager for a customer support system. 
     Analyze the following user query and assign it to exactly one of these specialized agents:
@@ -44,7 +44,7 @@ def detect_intent(user_query: str, retries=3) -> str:
     
     for attempt in range(retries):
         try:
-            # 3. Use response_schema to enforce the Pydantic model
+            # Use response_schema to enforce the Pydantic model
             response = client.models.generate_content(
                 model='gemini-3.1-flash-lite',
                 contents=prompt,
@@ -88,7 +88,7 @@ if __name__ == "__main__":
         routed_to = detect_intent(query)
         print(f"-> Routed to: [{routed_to}]\n")
         
-        # 4. Route execution logic
+        # Route execution logic
         if routed_to == "Technical Agent":
             response = handle_technical_query(query)
         elif routed_to == "Billing Agent":
@@ -105,5 +105,5 @@ if __name__ == "__main__":
         print(f"AI Response:\n{response}\n")
         print("-" * 50)
             
-        # 5. Delay to respect API rate limits
+        # Delay to respect API rate limits
         time.sleep(8)

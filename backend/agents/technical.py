@@ -1,19 +1,19 @@
 import os
-from google import genai
 from dotenv import load_dotenv
 from pathlib import Path
+from backend.utils.ai_client import get_genai_client
 
 # Load environment variables
 base_dir = Path(__file__).resolve().parent.parent
 env_path = base_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
 def handle_technical_query(user_query: str) -> str:
     """
     Generates a response for technical support issues (login, bugs, installation).
     """
+    client = get_genai_client()
+    
     prompt = f"""
     You are the Technical Support Agent for a software company. 
     A customer has reached out with the following technical issue:
@@ -27,7 +27,7 @@ def handle_technical_query(user_query: str) -> str:
     
     try:
         response = client.models.generate_content(
-            model='gemini-3.1-flash-lite', # OR 'gemini-3.5-flash'
+            model='gemini-3.1-flash-lite', 
             contents=prompt,
         )
         return response.text

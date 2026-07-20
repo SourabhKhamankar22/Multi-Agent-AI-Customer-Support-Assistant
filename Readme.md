@@ -215,7 +215,8 @@ Open [http://localhost:3000](http://localhost:3000) to access the application.
 ### High-Fidelity Multi-Agent Chat Environment
 
 *The real-time operational dashboard executing automatic intent analysis routing across Billing, Technical, Product, Complaints, and FAQ agents.*
-![Chat Environment Dashboard](assets/chat.png)
+![Chat Environment Dashboard](assets/chat.png)  ![Chat Environment Dashboard](assets/chat.png) 
+
 
 ### Cloud Deployment Topologies
 
@@ -223,7 +224,7 @@ Open [http://localhost:3000](http://localhost:3000) to access the application.
 
 | Vercel Frontend Server Deploy Pipeline | Render Application Engine logs Cluster |
 | --- | --- |
-|  |  |
+| ![Vercel Deployment](assets/vercel.png) | ![Render Deployment](assets/render.png) |
 
 ---
 
